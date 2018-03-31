@@ -97,3 +97,7 @@ const title = capitalize('hello world');    // 'Hello world'
 ## License
 
 MIT
+
+## Contributing
+
+Contributions welcome. Please open an issue first to discuss changes.
