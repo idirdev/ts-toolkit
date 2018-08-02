@@ -9,7 +9,7 @@ export function capitalize(str: string): string {
 }
 
 /** Split a string into words, handling camelCase, kebab-case, snake_case, and spaces */
-function splitWords(str: string): string[] {
+export function words(str: string): string[] {
   return str
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/[_\-]+/g, ' ')
@@ -20,11 +20,11 @@ function splitWords(str: string): string[] {
 
 /** Convert a string to camelCase */
 export function camelCase(str: string): string {
-  const words = splitWords(str);
-  if (words.length === 0) return '';
+  const parts = words(str);
+  if (parts.length === 0) return '';
   return (
-    words[0].toLowerCase() +
-    words
+    parts[0].toLowerCase() +
+    parts
       .slice(1)
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
       .join('')
@@ -33,14 +33,14 @@ export function camelCase(str: string): string {
 
 /** Convert a string to kebab-case */
 export function kebabCase(str: string): string {
-  return splitWords(str)
+  return words(str)
     .map((w) => w.toLowerCase())
     .join('-');
 }
 
 /** Convert a string to snake_case */
 export function snakeCase(str: string): string {
-  return splitWords(str)
+  return words(str)
     .map((w) => w.toLowerCase())
     .join('_');
 }

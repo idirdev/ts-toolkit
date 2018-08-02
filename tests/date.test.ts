@@ -1,30 +1,27 @@
 import { describe, it, expect } from 'vitest';
-import { formatRelative, startOf, endOf, addDays, diffInDays, isWeekend, isBetween } from '../src/date';
+import { formatDate, timeAgo, isToday, addDays, diffDays, startOfDay } from '../src/date';
 
 describe('date utilities', () => {
   const base = new Date('2024-06-15T12:30:00Z');
 
-  describe('formatRelative', () => {
+  describe('timeAgo', () => {
     it('formats seconds ago', () => {
-      const d = new Date(Date.now() - 30000);
-      expect(formatRelative(d)).toMatch(/seconds? ago/);
+      const now = new Date();
+      const d = new Date(now.getTime() - 30000);
+      expect(timeAgo(d, now)).toMatch(/seconds? ago/);
     });
     it('formats minutes ago', () => {
-      const d = new Date(Date.now() - 300000);
-      expect(formatRelative(d)).toMatch(/minutes? ago/);
+      const now = new Date();
+      const d = new Date(now.getTime() - 300000);
+      expect(timeAgo(d, now)).toMatch(/minutes? ago/);
     });
   });
 
-  describe('startOf / endOf', () => {
+  describe('startOfDay', () => {
     it('returns start of day', () => {
-      const start = startOf(base, 'day');
+      const start = startOfDay(base);
       expect(start.getHours()).toBe(0);
       expect(start.getMinutes()).toBe(0);
-    });
-    it('returns end of day', () => {
-      const end = endOf(base, 'day');
-      expect(end.getHours()).toBe(23);
-      expect(end.getMinutes()).toBe(59);
     });
   });
 
@@ -39,29 +36,26 @@ describe('date utilities', () => {
     });
   });
 
-  describe('diffInDays', () => {
+  describe('diffDays', () => {
     it('calculates difference in days', () => {
-      const a = new Date('2024-01-01');
-      const b = new Date('2024-01-10');
-      expect(diffInDays(a, b)).toBe(9);
+      const a = new Date('2024-01-10');
+      const b = new Date('2024-01-01');
+      expect(diffDays(a, b)).toBe(9);
     });
   });
 
-  describe('isWeekend', () => {
-    it('detects saturday', () => {
-      expect(isWeekend(new Date('2024-06-15'))).toBe(true);
-    });
-    it('detects weekday', () => {
-      expect(isWeekend(new Date('2024-06-17'))).toBe(false);
+  describe('formatDate', () => {
+    it('formats with default pattern', () => {
+      expect(formatDate(new Date('2024-06-15'))).toBe('2024-06-15');
     });
   });
 
-  describe('isBetween', () => {
-    it('checks date range', () => {
-      const date = new Date('2024-06-15');
-      const start = new Date('2024-06-01');
-      const end = new Date('2024-06-30');
-      expect(isBetween(date, start, end)).toBe(true);
+  describe('isToday', () => {
+    it('returns true for today', () => {
+      expect(isToday(new Date())).toBe(true);
+    });
+    it('returns false for other dates', () => {
+      expect(isToday(new Date('2020-01-01'))).toBe(false);
     });
   });
 });

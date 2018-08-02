@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { debounce, throttle, memoize, once, pipe, compose, noop, identity } from '../src/function';
+import { debounce, throttle, memoize, pipe, compose } from '../src/function';
 
 describe('function utilities', () => {
   describe('debounce', () => {
@@ -43,16 +43,6 @@ describe('function utilities', () => {
       fn(1);
       fn(2);
       expect(calls).toBe(2);
-    });
-  });
-
-  describe('once', () => {
-    it('only calls function once', () => {
-      const fn = vi.fn(() => 42);
-      const onceFn = once(fn);
-      expect(onceFn()).toBe(42);
-      expect(onceFn()).toBe(42);
-      expect(fn).toHaveBeenCalledTimes(1);
     });
   });
 

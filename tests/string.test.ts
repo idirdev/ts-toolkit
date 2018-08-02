@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { camelCase, slugify, truncate, capitalize, escapeHtml, template, words } from '../src/string';
 
+
 describe('string utilities', () => {
   describe('camelCase', () => {
     it('converts kebab-case', () => {

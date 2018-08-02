@@ -24,6 +24,7 @@ export {
   slugify,
   escapeHtml,
   template,
+  words,
 } from './string';
 
 export {
@@ -70,3 +71,42 @@ export {
   diffDays,
   startOfDay,
 } from './date';
+
+export {
+  clamp,
+  lerp,
+  inverseLerp,
+  roundTo,
+  randomInt,
+  randomFloat,
+  inRange,
+  sum,
+  average,
+  median,
+  percentile,
+} from './number';
+
+export {
+  delay,
+  retry as retryAsync,
+  timeout,
+  pool,
+  deferred,
+  settled,
+} from './promise';
+
+export type { Result } from './result';
+export {
+  ok,
+  err,
+  isOk,
+  isErr,
+  unwrap,
+  unwrapOr,
+  map,
+  mapErr,
+  flatMap,
+  tryCatch,
+  tryCatchAsync,
+  collect,
+} from './result';

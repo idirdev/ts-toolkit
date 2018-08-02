@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { chunk, unique, flatten, groupBy, partition, zip, shuffle, sample } from '../src/array';
+import { chunk, unique, flatten, groupBy, partition, zip, shuffle } from '../src/array';
 
 describe('array utilities', () => {
   describe('chunk', () => {

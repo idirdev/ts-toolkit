@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { pick, omit, deepClone, merge, get, set, has, mapValues } from '../src/object';
+import { pick, omit, deepClone, deepMerge, get, set } from '../src/object';
 
 describe('object utilities', () => {
   describe('pick', () => {
@@ -34,15 +34,15 @@ describe('object utilities', () => {
     });
   });
 
-  describe('merge', () => {
+  describe('deepMerge', () => {
     it('deeply merges objects', () => {
       const a = { x: { y: 1 }, z: 2 };
       const b = { x: { w: 3 }, z: 4 };
-      expect(merge(a, b)).toEqual({ x: { y: 1, w: 3 }, z: 4 });
+      expect(deepMerge(a, b)).toEqual({ x: { y: 1, w: 3 }, z: 4 });
     });
     it('does not mutate source', () => {
       const a = { x: 1 };
-      merge(a, { x: 2 });
+      deepMerge(a, { x: 2 });
       expect(a.x).toBe(1);
     });
   });
@@ -56,9 +56,11 @@ describe('object utilities', () => {
     });
   });
 
-  describe('mapValues', () => {
-    it('maps object values', () => {
-      expect(mapValues({ a: 1, b: 2 }, (v) => v * 2)).toEqual({ a: 2, b: 4 });
+  describe('set', () => {
+    it('sets nested value by path', () => {
+      const obj = { a: { b: 1 } };
+      const result = set(obj, 'a.b', 42);
+      expect(result.a.b).toBe(42);
     });
   });
 });
