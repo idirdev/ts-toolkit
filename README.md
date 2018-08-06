@@ -101,3 +101,21 @@ MIT
 ## Contributing
 
 Contributions welcome. Please open an issue first to discuss changes.
+
+---
+
+## 🇫🇷 Documentation en français
+
+### Description
+TS Toolkit est une bibliothèque utilitaire TypeScript complète pour le développement quotidien. Elle est conçue sans dépendances, entièrement typée et tree-shakeable, ce qui garantit des bundles légers. Elle regroupe un large éventail d'utilitaires pour les tableaux, les objets, les chaînes de caractères, les fonctions et bien plus encore.
+
+### Installation
+```bash
+npm install @idirdev/ts-toolkit
+```
+
+### Utilisation
+```typescript
+import { groupBy, debounce, deepClone } from '@idirdev/ts-toolkit';
+```
+Consultez la documentation en anglais ci-dessus pour la référence complète de l'API et les exemples.
